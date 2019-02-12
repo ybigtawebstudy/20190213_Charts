@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doughnut Chart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+<body>
+
+
+    <canvas id="doughnut-chart" width="800" height="450"></canvas>
+    <script>
+
+            new Chart(document.getElementById("doughnut-chart"), {
+            type: 'doughnut',
+            data: {
+            labels: ["Game", "Finance", "News", "Tools", "Shopping", "Entertainment", "Communication", "etc"],
+            datasets: [
+            {
+            label: "Number of Apps(%)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#b9e8c3","#e8dbb9", "#b9e8db"],
+            data: [12,4,3,2,2,4,2,5]
+            }
+            ]
+            },
+            options: {
+            title: {
+            display: true,
+            text: 'Most Popular Android App Categories in Vietnam'
+            }
+            }
+            });
+
+    </script>
+
+</body>
+</html>
