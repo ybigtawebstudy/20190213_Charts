@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vega-Lite bubble Chart</title>
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/vega@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+  </head>
+
+  <body>
+    <h1>웹시각화스터디0212</h1>
+    <p>2014년 각 나라별 income, life_exp, population 을 시각화한 bubble차트이다.</p>
+    <p>vega-lite는 default로 tooltip을 제공해주기에 마우스로 가르키면 구체적으로 알 수 있다.</p>
+    <div id="vis"></div>
+
+    <script>
+
+      var bubble = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v3.json',
+        title : {text : 'bubble chart', fontSize : 25},
+        width : 500,
+        height : 400,
+        data: {url:'data/bubble.json'},
+        mark : {type : 'point', tooltip : {content : 'data'} },
+          // bubble 차트를 그리기 위해 mark : point 로 해준다
+          // tooltip : {content : 'data'} 를 통해 tooltip에 모든 데이터가 보이도록한다
+          // tooltip의 default는 encoding에 해당하는 data만 보여준다
+        encoding: {
+          x: {field: 'income', type: 'quantitative'},
+          y: {field: 'life_exp',type: 'quantitative'},
+          size : {field : 'population', type : 'quantitative'},
+          // bubble 차트이기 때문에 x,y 축을 그리고 size까지 정해야 한다
+          // "tooltip": {"field": "b", "type": "quantitative"} 이처럼 tooltip을
+          // 원하는 대로 선택할 수 있다
+          color : {field : 'continent', type : 'nominal'}
+        }
+      };
+
+      vegaEmbed('#vis', bubble);
+
+    </script>
+
+  </body>
+</html>
